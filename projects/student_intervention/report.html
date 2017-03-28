@@ -11801,7 +11801,7 @@ Classification, predict if a student is going to fail or not. this is not a cont
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries</span>
@@ -11854,7 +11854,7 @@ Classification, predict if a student is going to fail or not. this is not a cont
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Calculate number of students</span>
@@ -11862,7 +11862,7 @@ Classification, predict if a student is going to fail or not. this is not a cont
 
 
 <span class="c1"># TODO: Calculate number of features</span>
-<span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> 
 
 <span class="c1"># TODO: Calculate passing students</span>
 <span class="n">n_passed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">[</span><span class="n">student_data</span><span class="p">[</span><span class="s1">&#39;passed&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span><span class="p">])</span>
@@ -11892,7 +11892,7 @@ Classification, predict if a student is going to fail or not. this is not a cont
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Total number of students: 395
-Number of features: 31
+Number of features: 30
 Number of students who passed: 265
 Number of students who failed: 130
 Graduation rate of the class: 67.09%
@@ -11918,7 +11918,7 @@ Graduation rate of the class: 67.09%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature columns</span>
@@ -12002,7 +12002,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -12073,7 +12073,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import any additional functionality you may need here</span>
@@ -12260,7 +12260,7 @@ Testing set has 95 samples.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -12334,7 +12334,7 @@ Testing set has 95 samples.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import the three supervised learning models from sklearn</span>
@@ -12345,10 +12345,11 @@ Testing set has 95 samples.
 <span class="c1"># from sklearn import model_C</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
 
+<span class="n">ran_state</span> <span class="o">=</span> <span class="mi">29</span>
 <span class="c1"># TODO: Initialize the three models</span>
 <span class="n">clf_A</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
-<span class="n">clf_B</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
-<span class="n">clf_C</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">)</span>
+<span class="n">clf_B</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">ran_state</span><span class="p">)</span>
+<span class="n">clf_C</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">ran_state</span><span class="p">)</span>
 
 
 <span class="c1"># TODO: Set up the training set sizes</span>
@@ -12365,6 +12366,7 @@ Testing set has 95 samples.
 <span class="c1"># TODO: Execute the &#39;train_predict&#39; function for each classifier and each training set size</span>
 <span class="c1"># train_predict(clf, X_train, y_train, X_test, y_test)</span>
 <span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="p">[</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">clf_B</span><span class="p">,</span> <span class="n">clf_C</span><span class="p">]:</span>
+    <span class="k">print</span> <span class="s2">&quot;------------------------------------------------------------------------&quot;</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">X_train_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">),</span> <span class="p">(</span><span class="n">X_train_200</span><span class="p">,</span> <span class="n">y_train_200</span><span class="p">),</span> <span class="p">(</span><span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">)]:</span>
         <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">j</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 </pre></div>
@@ -12379,76 +12381,79 @@ Testing set has 95 samples.
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training a GaussianNB using a training set size of 100. . .
-Trained model in 0.0074 seconds
-Made predictions in 0.0011 seconds.
+<pre>------------------------------------------------------------------------
+Training a GaussianNB using a training set size of 100. . .
+Trained model in 0.0018 seconds
+Made predictions in 0.0007 seconds.
 F1 score for training set: 0.8550.
-Made predictions in 0.0015 seconds.
+Made predictions in 0.0008 seconds.
 F1 score for test set: 0.7481.
 
 
 Training a GaussianNB using a training set size of 200. . .
-Trained model in 0.0040 seconds
-Made predictions in 0.0013 seconds.
+Trained model in 0.0015 seconds
+Made predictions in 0.0008 seconds.
 F1 score for training set: 0.8321.
-Made predictions in 0.0009 seconds.
+Made predictions in 0.0008 seconds.
 F1 score for test set: 0.7132.
 
 
 Training a GaussianNB using a training set size of 300. . .
-Trained model in 0.0035 seconds
-Made predictions in 0.0011 seconds.
+Trained model in 0.0022 seconds
+Made predictions in 0.0009 seconds.
 F1 score for training set: 0.8088.
-Made predictions in 0.0006 seconds.
+Made predictions in 0.0008 seconds.
 F1 score for test set: 0.7500.
 
 
+------------------------------------------------------------------------
 Training a DecisionTreeClassifier using a training set size of 100. . .
-Trained model in 0.0104 seconds
-Made predictions in 0.0021 seconds.
+Trained model in 0.0030 seconds
+Made predictions in 0.0011 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0010 seconds.
-F1 score for test set: 0.6842.
+F1 score for test set: 0.7179.
 
 
 Training a DecisionTreeClassifier using a training set size of 200. . .
-Trained model in 0.0025 seconds
-Made predictions in 0.0009 seconds.
+Trained model in 0.0039 seconds
+Made predictions in 0.0008 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0006 seconds.
-F1 score for test set: 0.7132.
+Made predictions in 0.0008 seconds.
+F1 score for test set: 0.7231.
 
 
 Training a DecisionTreeClassifier using a training set size of 300. . .
-Trained model in 0.0041 seconds
-Made predictions in 0.0012 seconds.
-F1 score for training set: 1.0000.
-Made predictions in 0.0006 seconds.
-F1 score for test set: 0.7069.
-
-
-Training a SVC using a training set size of 100. . .
-Trained model in 0.0079 seconds
+Trained model in 0.0039 seconds
 Made predictions in 0.0010 seconds.
-F1 score for training set: 0.8806.
-Made predictions in 0.0008 seconds.
-F1 score for test set: 0.7463.
+F1 score for training set: 1.0000.
+Made predictions in 0.0004 seconds.
+F1 score for test set: 0.7130.
+
+
+------------------------------------------------------------------------
+Training a SVC using a training set size of 100. . .
+Trained model in 0.0028 seconds
+Made predictions in 0.0014 seconds.
+F1 score for training set: 0.8591.
+Made predictions in 0.0013 seconds.
+F1 score for test set: 0.7838.
 
 
 Training a SVC using a training set size of 200. . .
-Trained model in 0.0267 seconds
-Made predictions in 0.0016 seconds.
-F1 score for training set: 0.8622.
-Made predictions in 0.0009 seconds.
-F1 score for test set: 0.7647.
+Trained model in 0.0083 seconds
+Made predictions in 0.0044 seconds.
+F1 score for training set: 0.8693.
+Made predictions in 0.0020 seconds.
+F1 score for test set: 0.7755.
 
 
 Training a SVC using a training set size of 300. . .
-Trained model in 0.0469 seconds
-Made predictions in 0.0031 seconds.
-F1 score for training set: 0.8421.
-Made predictions in 0.0012 seconds.
-F1 score for test set: 0.7826.
+Trained model in 0.0101 seconds
+Made predictions in 0.0076 seconds.
+F1 score for training set: 0.8692.
+Made predictions in 0.0032 seconds.
+F1 score for test set: 0.7586.
 
 
 </pre>
@@ -12628,7 +12633,8 @@ The Support Vector Machines even if it is a little slower compared with the othe
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
 This model using Support Vector Machines works separating the information that we have into differents labels, those labels would be from the training information (past experiences), for example the model would separate the students based on gender, age, mother job, etc., and the model will clasify the students depends of the backgroud to predict if they need intervention or not.
-Using this method the school will be able to add new students and features to make more accurate the predictions and help the students.</p>
+If the classification is complicated (because we can not separate the data with a simple line), SVM uses Kernel Trick to make it easier. Kernel Trick turns the data into a linear separable, it uses a higher dimension space to do that.</p>
+<p>Using this method the school will be able to add new students and features to make more accurate the predictions and help the students.</p>
 
 </div>
 </div>
@@ -12659,7 +12665,7 @@ Using this method the school will be able to add new students and features to ma
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;GridSearchCV&#39; and &#39;make_scorer&#39;</span>
@@ -12668,18 +12674,10 @@ Using this method the school will be able to add new students and features to ma
 
 <span class="c1"># TODO: Create the parameters list you wish to tune</span>
 <span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">{</span>
-         <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">],</span>
-         <span class="s1">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">],</span>
-         <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;auto&#39;</span><span class="p">]</span>
-        <span class="p">}</span>
-    
-<span class="c1">#         {</span>
-<span class="c1">#          &#39;C&#39;: [0.5, 1.0, 2.0, 5.0, 10.0, 100.0],</span>
-<span class="c1">#          &#39;kernel&#39;: [&#39;rbf&#39;, &#39;linear&#39;,&#39;poly&#39;, &#39;sigmoid&#39;],</span>
-<span class="c1">#          &#39;gamma&#39;: [&#39;auto&#39;,1.0, 5.0, 10.0, 100.0]</span>
-<span class="c1">#         }</span>
- <span class="p">]</span>
+    <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s1">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s1">&#39;degree&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;rbf&#39;</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">],</span> <span class="s1">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;rbf&#39;</span><span class="p">]}</span>
+<span class="p">]</span>
 
 <span class="c1"># TODO: Initialize the classifier</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">29</span><span class="p">)</span>
@@ -12711,10 +12709,10 @@ Using this method the school will be able to add new students and features to ma
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Made predictions in 0.0037 seconds.
-Tuned model has a training F1 score of 0.8510.
-Made predictions in 0.0014 seconds.
-Tuned model has a testing F1 score of 0.7914.
+<pre>Made predictions in 0.0056 seconds.
+Tuned model has a training F1 score of 0.9717.
+Made predictions in 0.0020 seconds.
+Tuned model has a testing F1 score of 0.7919.
 </pre>
 </div>
 </div>
