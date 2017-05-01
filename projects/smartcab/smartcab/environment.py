@@ -461,4 +461,5 @@ class DummyAgent(Agent):
         if action_okay:
             action = self.next_waypoint
             self.next_waypoint = random.choice(Environment.valid_actions[1:])
+        
         reward = self.env.act(self, action)
