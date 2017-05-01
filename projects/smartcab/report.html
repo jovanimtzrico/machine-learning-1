@@ -11910,7 +11910,7 @@ learning -&gt; Specifies whether the agent is expected to learn or not
 </code></pre>
 <p>environment.py -&gt; Environment class</p>
 
-<pre><code>step(self): This function is called  when an agent performs an action
+<pre><code>act(self, agent, action): This function is called  when an agent performs an action if it is legal.
 
 
 </code></pre>
@@ -11923,7 +11923,7 @@ render(): This function render display of the simulation on the GUI.
 </code></pre>
 <p>planner.py -&gt; next_waypoint()</p>
 
-<pre><code>Creates the next waypoint based on current location.</code></pre>
+<pre><code>Creates the next waypoint based on current location. This function will consider the East-West direction first and then North-South direction.</code></pre>
 
 </div>
 </div>
@@ -13123,7 +13123,7 @@ BMvMzMzMzKxG/h/ksKWSKrUZ8QAAAABJRU5ErkJggg==
 
 inputs: light - The Smartcab must know the color of the lights so it can make an action depending of the color of the light, also the reward depends of the color of the light.
 
-inputs: left - This parameter is important because the Smartcab needs to know if there is a car present on the left and its intented to drive forward. If that is the case the Smartcab cannot turn left or going straight bacause it can cause an accident.
+inputs: left - This parameter is important because the Smartcab needs to know if there is a car present on the left and its intented to drive forward. If that is the case the Smartcab cannot turn right on a red light bacause it can cause an accident.
 
 inputs: oncoming - the Smartcab must know if there is a vehicle coming in the opposite direction when it is trying to make a left turn, if there is a vehicle present, a major accident.
 
@@ -13167,18 +13167,16 @@ deadline - I do not believe this parameter is relevant for the Smartcab for safe
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>For the features waypoint and inputs(light, left, right and oncoming) we have the 96 possible states.</p>
+<p>For the features waypoint and inputs(light, left and oncoming) we have the 96 possible states.</p>
 
 <pre><code>              States
 waypoint -&gt;   3
 light    -&gt;   2
 left     -&gt;   4
-right    -&gt;   4
 oncoming -&gt;   4
 </code></pre>
-<p>Total number of states =&gt; 3x2x4x4x4 = 384</p>
-<p>And for each state we can have do an accion (none, forward, left, right).
-Total of accion for each state =&gt; 96x4 =&gt; 1,536</p>
+<p>Total number of states =&gt; 3x2x4x4 = 96</p>
+<p>And for each state we can have do an accion (none, forward, left, right).</p>
 <p>This is not a big number, with a reasonable number of training trials I believe the Smartcab could learn a policy for each possible state.</p>
 
 </div>
@@ -21532,16 +21530,16 @@ The state should look like this:</p>
 </ul>
 <p>The following state is an example of an optimal state</p>
 <ul>
-<li><p>('red', None, 'left', None)</p>
+<li><p>('red', 'left', 'left', 'forward')</p>
 <ul>
-<li>forward : -3.82</li>
-<li>None : 1.10</li>
-<li>right : 0.30</li>
-<li>left : -2.83</li>
+<li>forward : -0.80</li>
+<li>None : 0.09</li>
+<li>right : -0.20</li>
+<li>left : -1.17</li>
 </ul>
 </li>
 </ul>
-<p>In this state the light is "red" and the agent is going nowhere. The only two conditions are turning right or stop on a red right. As we can see the state models the correct action that the agent should do, stop on a red light in this case, the action with the biggest reward is "None" with 1.10.</p>
+<p>In this state the light is "red" and the agent is going nowhere. The only condition is stop on a red right. As we can see the state models the correct action that the agent should do, stop on a red light in this case, the action with the biggest reward is "None" with 0.09.</p>
 <p>The following state is an example of a suboptimal state:</p>
 <ul>
 <li><p>('green', 'left', 'forward', 'right')</p>
@@ -21553,7 +21551,7 @@ The state should look like this:</p>
 </ul>
 </li>
 </ul>
-<p>This state the light is green, the agent is trying to move nowhere. In this case according to the traffic rules the car has to move or it will causes a traffic violation and possible accident.</p>
+<p>This state the light is green, the agent is trying to move nowhere. In this case according to the traffic rules the car has to move or it will causes a traffic violation and possible accident. Even if this action is the highest value, the waypoint is right and the smartcab is not moving, for this reason this is not an optimal action to follow. Looks that the forward and right action have not changed, since we initialize the values with zeros.</p>
 
 </div>
 </div>
