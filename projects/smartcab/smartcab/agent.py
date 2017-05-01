@@ -50,6 +50,7 @@ class LearningAgent(Agent):
             # self.epsilon = 1.0/(self.t**2 - self.alpha*self.t)
             #self.epsilon = math.fabs(math.cos(self.alpha*self.t))/(self.t**2)
             self.epsilon = math.fabs(math.cos(self.alpha*self.t))
+            #self.epsilon = 1 - (1/(1+math.exp(-k*self.alpha*(self.t-t0))))
             self.t += 1
 
         return None
@@ -89,10 +90,7 @@ class LearningAgent(Agent):
 
         #maxQ = self.Q[state][0]
         maxQ = 0
-        for action in self.Q[state]:
-            if maxQ < self.Q[state][action]:
-                maxQ = self.Q[state][action]
-
+        maxQ = max(self.Q[state].values())
         return maxQ 
 
 
@@ -158,7 +156,7 @@ class LearningAgent(Agent):
         # When learning, implement the value iteration update rule
         #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
         if self.learning:
-            self.Q[state][action] = (1 - self.alpha) * self.Q[state][action] + (reward * self.alpha)
+            self.Q[state][action] += self.alpha * (reward - self.Q[state][action])
         return
 
 
